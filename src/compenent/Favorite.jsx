@@ -1,15 +1,23 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
-export default function Account() {
+import Card from "./Card.jsx";
+import Database from "../assets/database.json"
+
+export default function Favorites() {
+    const [movies, setMovies] = useState(Database);
     return (
         <>
-        <Navbar/>
-        <p>Favorites</p>
-        <Link to="/">Home</Link>
-        <Link to="/Account" >Account</Link>
-        <Footer/>
+            <Navbar />
+            <h1 className="mt-10 mb-5 text-3xl font-bold text-center">Favorites</h1>
+            {movies.length > 0 ? (
+                <Card movies={movies} />) : (
+                <p className="mt-10 text-2xl font-bold text-center">
+                    No favorite movie, add one for begin
+                </p>
+            )}
+
+            <Footer />
         </>
-    )
+    );
 }
